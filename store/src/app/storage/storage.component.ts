@@ -1,36 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import {  Component, Injectable, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../environments/environments";
+import { Items } from "../models/store.model";
+import { StoreService } from "../services/store.service";
+import { Router, RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
-
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-user-list',
-  imports: [CommonModule, RouterModule],
-  providers: [storeService],
-  templateUrl: './user-list.html',
-  styleUrl: './user-list.css'
+  selector: 'app-storage',
+  imports: [RouterModule,CommonModule],
+   providers: [StoreService],
+  templateUrl: './storage.component.html',
+  styleUrl: './storage.component.css'
 })
-export class StorageComponent implements OnInit {
-  storeService: any;
-updateItem(arg0: any) {
-throw new Error('Method not implemented.');
-}
-  item:items[] = []
-item: any | undefined;
+export class Storage implements OnInit {
 
-  constructor(private router: Router) {}
+
+  items: Items[] = []
+// item: any;
+
+  constructor(private itemService: StoreService, private router: Router) {}
 
   ngOnInit(): void {
     this.getItems()
   }    
-  getItems() {
-    throw new Error('Method not implemented.');
-  }
 
-  getUsers() {
-    this.storeService.getUsers().subscribe((data: Item[]) => {
-      this.item = data
+
+  getItems() {
+    this.itemService.getItem().subscribe((data: Items[]) => {
+      this.items = data
     })
   }
 
