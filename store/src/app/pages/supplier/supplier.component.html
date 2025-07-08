@@ -1,1 +1,65 @@
-<p>supplier works!</p>
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2 class="mb-0">Supplier List</h2>
+
+    <a routerLink="/item/create" class="btn btn-primary">Add Supplier</a>
+
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="suppliers.length > 0">
+
+    <thead class="table-light">
+
+      <tr>
+
+        <th>id<th>
+   <th>name</th>
+   <th>Contact</th>
+    
+
+
+        <!-- <th>Image</th> -->
+
+        <th>Actions</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let supplier of suppliers">
+
+        <td>{{ supplier.id }}</td>
+
+        <td>{{supplier.name }}</td>
+
+        <td>{{supplier.contact}}</td>
+
+       
+
+        <!-- <td>
+
+          <img *ngIf="user.image" [src]="‘http://localhost:5000/uploads/photos/’ + user.image" alt="User Image" width="80" class="img-thumbnail" />
+
+        </td> -->
+
+        <!-- <td>
+
+          <button (click)="   updateItem(item.id)" class="btn btn-success btn-sm me-2">Edit</button>
+
+          <button (click)=" deleteById(item.id)" class="btn btn-danger btn-sm">Delete</button>
+
+        </td> -->
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- <p *ngIf="items.length === 0" class="text-muted">No users found.</p> -->
+
+</div>

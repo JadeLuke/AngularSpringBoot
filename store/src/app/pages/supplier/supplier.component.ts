@@ -3,33 +3,33 @@ import { Router, RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { SupplierService } from '../../services/supplier.service';
-import { Supplier } from '../../models/supplier.model';
+import {  Suppliers } from '../../models/supplier.model';
 
 @Component({
   selector: 'app-supplier',
    imports: [RouterModule,CommonModule],
-
+providers: [SupplierService],
   templateUrl: './supplier.component.html',
   styleUrl: './supplier.component.css'
 })
 export class SupplierComponent implements OnInit {
 
-  items: Supplier[] = []
-  suppliers: Supplier[];
+  suppliers: Suppliers[] = []
+  SupplierService: any;
+ 
 // item: any;
 
-  constructor(private suppliersService: SupplierService, private router: Router) {}
+  constructor(private supplierService: SupplierService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getSuppliers()
+       this.getSuppliers()
   }    
 
 
-  getSuppliers() {
-    this.suppliersService.getSuppliers().subscribe((data: Supplier[]) => {
-      this.suppliers = data
-    })
-  }
-
+    getSuppliers() {
+      this.SupplierService.getSupplier().subscribe((data: Suppliers[]) => {
+        this.suppliers = data
+      })
+    }
 }
 
