@@ -15,7 +15,7 @@ import { CommonModule } from "@angular/common";
   templateUrl: './storage.component.html',
   styleUrl: './storage.component.css'
 })
-export class Storage implements OnInit {
+export class StorageComponent implements OnInit {
 
 
   items: Items[] = []
