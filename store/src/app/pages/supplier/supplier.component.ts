@@ -116,7 +116,14 @@ export class SupplierComponent {
     });
   }
   
-  
+  deleteSupplier(index: number) {
+  this.suppliers.splice(index, 1);
+}
+
+deleteItem(supplierIndex: number, itemIndex: number) {
+  this.suppliers[supplierIndex].store.splice(itemIndex, 1);
+}
+
   
   
 }

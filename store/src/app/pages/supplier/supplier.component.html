@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Supplier Management</h2>
+  <h2>Store Management</h2>
 
 
   <div class="btn-group">
@@ -76,13 +76,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let s of suppliers">
+        <tr *ngFor="let s of suppliers;let i = index">
           <td>{{ s?.name }}</td>
           <td>{{ s?.contact }}</td>
+          <td>
+          <button (click)="deleteSupplier(i)" class="btn">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+
 
   <!-- Store Items List -->
   <div *ngIf="showStores">
@@ -103,6 +110,8 @@
             <td>{{ item.item_name }}</td>
             <td>R{{ item.price }}</td>
             <td>{{ item.quantity }}</td>
+
+            
           </tr>
         </ng-container>
       </tbody>
