@@ -1,34 +1,68 @@
 <div class="container">
   <h2>Supplier Management</h2>
 
-  <!-- Toggle View -->
+
   <div class="btn-group">
     <button (click)="toggleSuppliers()" class="btn">View Suppliers</button>
     <button (click)="toggleStores()" class="btn">View Store Items</button>
   </div>
 
-  <!-- Add Supplier -->
+
   <div class="form">
-    <h3>Add Supplier with Store</h3>
-    <input type="text" placeholder="Supplier Name" [(ngModel)]="newSupplier.name" required />
-    <input type="text" placeholder="Contact" [(ngModel)]="newSupplier.contact" required />
+    <h3>Add Supplier</h3>
+    <input
+      type="text"
+      placeholder="Supplier Name"
+      [(ngModel)]="newSupplier.name"
+      (ngModelChange)="showSupplierPreview()"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Contact"
+      [(ngModel)]="newSupplier.contact"
+      (ngModelChange)="showSupplierPreview()"
+      required
+    />
+    <!-- <button (click)="addSupplier()">Preview Supplier</button> -->
 
     <h4>Add Store Item</h4>
-    <input type="text" placeholder="Item Name" [(ngModel)]="newItem.item_name" required />
-    <input type="number" placeholder="Price" [(ngModel)]="newItem.price" required />
-    <input type="number" placeholder="Quantity" [(ngModel)]="newItem.quantity" required />
-    <button (click)="addStoreItem()">+ Add more items</button>
+    <input
+      type="text"
+      placeholder="Item Name"
+      [(ngModel)]="newItem.item_name"
+      required
+    />
+    <input
+      type="number"
+      placeholder="Price"
+      [(ngModel)]="newItem.price"
+      required
+    />
+    <input
+      type="number"
+      placeholder="Quantity"
+      [(ngModel)]="newItem.quantity"
+      required
+    />
+    <button (click)="addStoreItem()">+ Add items</button>
+  </div>
 
-    <div *ngIf="newSupplier.store.length > 0">
-      <h5>Current Items</h5>
+  <div *ngIf="submittedSupplier">
+    <h3>Newly Added Supplier</h3>
+    <p><strong>Name:</strong> {{ submittedSupplier.name }}</p>
+    <p><strong>Contact:</strong> {{ submittedSupplier.contact }}</p>
+
+    <div *ngIf="submittedSupplier.store.length > 0">
+      <h4>Store Items:</h4>
       <ul>
-        <li *ngFor="let item of newSupplier.store">
+        <li *ngFor="let item of submittedSupplier.store">
           {{ item.item_name }} - R{{ item.price }} x {{ item.quantity }}
         </li>
       </ul>
     </div>
 
-    <button (click)="addSupplier()" [disabled]="newSupplier.store.length === 0">Add Supplier</button>
+    <button (click)="submitSupplier()">Submit Supplier</button>
   </div>
 
   <!-- Supplier List -->

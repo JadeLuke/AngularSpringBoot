@@ -17,7 +17,6 @@ export class SupplierComponent {
   showSuppliers = false;
   showStores = false;
 
-  // Initialize here to avoid undefined errors
   newSupplier: Suppliers = {
     name: '',
     contact: '',
@@ -29,6 +28,8 @@ export class SupplierComponent {
     price: 0,
     quantity: 0
   };
+
+  submittedSupplier: Suppliers | null = null;
 
   constructor(private supplierService: SupplierService) {}
 
@@ -52,40 +53,70 @@ export class SupplierComponent {
     this.showSuppliers = false;
   }
 
+  showSupplierPreview() {
+    if (this.newSupplier.name.trim() && this.newSupplier.contact.trim()) {
+      this.submittedSupplier = {
+        name: this.newSupplier.name,
+        contact: this.newSupplier.contact,
+        store: [...this.newSupplier.store]
+      };
+    }
+  }
+
   addStoreItem() {
     if (!this.newItem.item_name.trim() || this.newItem.price <= 0 || this.newItem.quantity <= 0) {
       alert('Please enter valid item details.');
       return;
     }
+
     this.newSupplier.store.push({ ...this.newItem });
     this.newItem = { item_name: '', price: 0, quantity: 0 };
+    this.showSupplierPreview();
   }
 
   addSupplier() {
-    if (!this.newSupplier.name.trim() || !this.newSupplier.contact.trim() || this.newSupplier.store.length === 0) {
-      alert('Please fill in all supplier and store details.');
+    if (!this.newSupplier.name.trim() || !this.newSupplier.contact.trim()) {
+      alert('Please fill in supplier name and contact.');
+      return;
+    }
+
+    this.showSupplierPreview(); 
+  }
+
+  submitSupplier() {
+    if (!this.submittedSupplier) {
+      alert('Please add supplier information first.');
       return;
     }
   
-    const supplierToSend = {
-      name: this.newSupplier.name,
-      contact: this.newSupplier.contact,
-      store: this.newSupplier.store.map(item => ({
-        item_name: item.item_name,
-        price: item.price,
-        quantity: item.quantity
-      }))
-    };
+    const { name, contact, store } = this.submittedSupplier;
   
-    console.log('Sending supplier:', supplierToSend);
+    if (!name?.trim() || !contact?.trim()) {
+      alert('Please fill in the supplier name and contact.');
+      return;
+    }
   
-    this.supplierService.addSupplier(supplierToSend).subscribe(() => {
+    if (!store || store.length === 0) {
+      alert('Please add at least one store item before submitting.');
+      return;
+    }
+  
+    this.supplierService.addSupplier(this.submittedSupplier).subscribe(() => {
+     this.loadSuppliers();
+  
+      // Reset form and preview
       this.newSupplier = { name: '', contact: '', store: [] };
-      this.loadSuppliers();
+      this.newItem = { item_name: '', price: 0, quantity: 0 };
+      this.submittedSupplier = null;
+  
+      alert('Supplier submitted successfully.');
     }, (error) => {
-      console.error('Failed to add supplier:', error);
+      console.error('Failed to submit supplier:', error);
+      alert('Something went wrong while submitting. Please check the backend.');
     });
   }
+  
+  
   
   
 }
