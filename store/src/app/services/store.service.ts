@@ -1,24 +1,24 @@
-import {  Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { environment } from "../environments/environments";
 import { Items } from "../models/store.model";
-
-
-
+import { environment } from "../environments/environments";
 
 @Injectable({
-    providedIn: "root"
+  providedIn: "root"
 })
-export class StoreService{
+export class StoreService {
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) {}
+
+
+  getItems(): Observable<Items[]> {
+    return this.http.get<Items[]>(`${this.apiUrl}/api/v1/store/`);
+  }
+
+  addItem(item: Items): Observable<Items> {
+    return this.http.post<Items>(`${this.apiUrl}/api/v1/store/`, item);
+  }
   
-    private apiUrl = environment.apiUrl;
-     
-    constructor (private http: HttpClient){}
-
-    getItem(): Observable<Items[]>{
-        return this.http.get<Items[]>(this.apiUrl+"/api/v1/store/")
-
-
-    }}
-
+}
