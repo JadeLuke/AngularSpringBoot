@@ -1,1 +1,66 @@
-<p>storage works!</p>
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2 class="mb-0">Item List</h2>
+
+    <a routerLink="/item/create" class="btn btn-primary">Add Item</a>
+
+  </div>
+
+  <table class="table table-bordered table-hover" >
+
+    <thead class="table-light">
+
+      <tr>
+
+        <th>id<th>
+   <th>Item Name</th>Item_name:
+   <th>Quantity</th>
+   <th>Price</th>
+    
+
+
+        <!-- <th>Image</th> -->
+
+        <th>Actions</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of items">
+
+        <td>{{ item.id }}</td>
+
+        <td>{{ item.item_name }}</td>
+
+        <td>{{item.quantity }}</td>
+
+        <td>{{item.price}}</td>
+
+        <!-- <td>
+
+          <img *ngIf="user.image" [src]="‘http://localhost:5000/uploads/photos/’ + user.image" alt="User Image" width="80" class="img-thumbnail" />
+
+        </td> -->
+
+        <!-- <td>
+
+          <button (click)="   updateItem(item.id)" class="btn btn-success btn-sm me-2">Edit</button>
+
+          <button (click)=" deleteById(item.id)" class="btn btn-danger btn-sm">Delete</button>
+
+        </td> -->
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- <p *ngIf="items.length === 0" class="text-muted">No users found.</p> -->
+
+</div>

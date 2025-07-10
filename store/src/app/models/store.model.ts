@@ -1,7 +1,7 @@
 export interface Items {
     id?: number,
-    first_name: string,
-    last_name: string,
-    email: string,
-    password: string
+    item_name: string,
+    price: number,
+    quantity:number
 }
+
