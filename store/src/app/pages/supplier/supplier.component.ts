@@ -120,10 +120,9 @@ export class SupplierComponent {
   this.suppliers.splice(index, 1);
 }
 
-deleteItem(supplierIndex: number, itemIndex: number) {
-  this.suppliers[supplierIndex].store.splice(itemIndex, 1);
-}
 
   
   
 }
+
+
