@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SupplierService } from '../../services/supplier.service';
 import { Suppliers } from '../../models/supplier.model';
 import { Items } from '../../models/store.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier',
@@ -31,7 +32,7 @@ export class SupplierComponent {
 
   submittedSupplier: Suppliers | null = null;
 
-  constructor(private supplierService: SupplierService,   private cdr: ChangeDetectorRef
+  constructor(private supplierService: SupplierService,   private cdr: ChangeDetectorRef, private router: Router
 ) {}
 
   ngOnInit(): void {
@@ -138,6 +139,9 @@ deleteSupplier(supplierId: number, index: number) {
   }
 }
 
+updateItem(id:any){
+  this.router.navigate([`/edit/${id}`]);
+}
 
 
   
