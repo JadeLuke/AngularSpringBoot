@@ -1,1 +1,63 @@
-<p>update-items works!</p>
+<div class="container mt-5">
+
+    <div class="card shadow-sm">
+  
+      <div class="card-body">
+  
+        <h2 class="card-title mb-4">Add New User</h2>
+  
+        <form [formGroup]="itemForm" (ngSubmit)="updateItem()">
+
+          <div class="mb-3">
+  
+            <label for="name" class="form-label">Supplier name</label>
+  
+            <input type="text" id="name" class="form-control" formControlName="name" required>
+  
+          </div>
+
+          <div class="mb-3">
+  
+            <label for="contact" class="form-label">Contact</label>
+  
+            <input type="text" id="contact" class="form-control" formControlName="contact" required>
+  
+          </div>
+  
+          <div class="mb-3">
+  
+            <label for="item_name" class="form-label">Item Name</label>
+  
+            <input type="text" id="item_name" class="form-control" formControlName="item_name" required>
+  
+          </div>
+  
+          <div class="mb-3">
+  
+            <label for="price" class="form-label">Price</label>
+  
+            <input type="number" id="price" class="form-control" formControlName="price" required>
+  
+          </div>
+
+          <div class="mb-3">
+  
+            <label for="quantity" class="form-label">Quantity</label>
+  
+            <input type="number" id="quantity" class="form-control" formControlName="quantity" required>
+  
+          </div>
+  
+          <button type="submit" class="btn btn-primary">
+  
+            Update 
+  
+          </button>
+  
+        </form>
+  
+      </div>
+  
+    </div>
+  
+  </div>

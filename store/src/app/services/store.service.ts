@@ -25,7 +25,7 @@ export class StoreService {
     return this.http.get<Items>(`${this.apiUrl}/api/v1/store/${id}`);
   }
 
-  updateItem(id: number, item:Items): Observable<any>{
+  updateItem(id: number, item:FormData): Observable<any>{
  return this.http.put(`${this.apiUrl}/api/v1/store/${id}`, item);
   }
   
