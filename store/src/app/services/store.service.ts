@@ -20,5 +20,13 @@ export class StoreService {
   addItem(item: Items): Observable<Items> {
     return this.http.post<Items>(`${this.apiUrl}/api/v1/store/`, item);
   }
+
+  getItemById(id: number): Observable<Items>{
+    return this.http.get<Items>(`${this.apiUrl}/api/v1/store/${id}`);
+  }
+
+  updateItem(id: number, item:Items): Observable<any>{
+ return this.http.put(`${this.apiUrl}/api/v1/store/${id}`, item);
+  }
   
 }

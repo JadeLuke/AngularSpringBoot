@@ -23,5 +23,12 @@ export class SupplierService {
   return this.http.delete(`http://localhost:8080/api/v1/supplier/${id}`, { responseType: 'text' });
 }
 
+getSupplierById(id: number): Observable<Suppliers>{
+  return this.http.get<Suppliers>(`${this.apiUrl}/api/v1/supplier/${id}`);
+}
+
+updateSupplier(id: number, supplier: Suppliers): Observable<any>{
+  return this.http.put(`${this.apiUrl}/api/v1/supplier/${id}`, supplier);
+}
 
 }
