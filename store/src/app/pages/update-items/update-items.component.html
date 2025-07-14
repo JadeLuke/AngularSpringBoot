@@ -4,55 +4,58 @@
   
       <div class="card-body">
   
-        <h2 class="card-title mb-4">Add New User</h2>
+        <h2>Update Entry</h2>
   
         <form [formGroup]="itemForm" (ngSubmit)="updateItem()">
 
-          <div class="mb-3">
+          <div class="inputs">
   
-            <label for="name" class="form-label">Supplier name</label>
+            <label for="name" class="form-label">Supplier name</label> <br>
   
             <input type="text" id="name" class="form-control" formControlName="name" required>
   
           </div>
 
-          <div class="mb-3">
+          <div class="inputs">
   
-            <label for="contact" class="form-label">Contact</label>
+            <label for="contact" class="form-label">Contact</label> <br>
   
             <input type="text" id="contact" class="form-control" formControlName="contact" required>
   
           </div>
   
-          <div class="mb-3">
+          <div class="inputs">
   
-            <label for="item_name" class="form-label">Item Name</label>
+            <label for="item_name" class="form-label">Item Name</label> <br>
   
             <input type="text" id="item_name" class="form-control" formControlName="item_name" required>
   
           </div>
   
-          <div class="mb-3">
+          <div class="inputs">
   
-            <label for="price" class="form-label">Price</label>
+            <label for="price" class="form-label">Price</label> <br>
   
             <input type="number" id="price" class="form-control" formControlName="price" required>
   
           </div>
 
-          <div class="mb-3">
+          <div class="inputs">
   
-            <label for="quantity" class="form-label">Quantity</label>
+            <label for="quantity" class="form-label">Quantity</label> <br>
   
             <input type="number" id="quantity" class="form-control" formControlName="quantity" required>
   
           </div>
+
+          <div class="btn">
   
           <button type="submit" class="btn btn-primary">
   
             Update 
   
           </button>
+          </div>
   
         </form>
   
