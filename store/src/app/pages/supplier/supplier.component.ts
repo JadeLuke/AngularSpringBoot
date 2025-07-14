@@ -116,7 +116,13 @@ export class SupplierComponent {
     });
   }
   
-  
+  deleteSupplier(index: number) {
+  this.suppliers.splice(index, 1);
+}
+
+
   
   
 }
+
+
