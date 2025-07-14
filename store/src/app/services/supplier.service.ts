@@ -7,6 +7,7 @@ import { environment } from '../environments/environments';
 @Injectable({ providedIn: 'root' })
 export class SupplierService {
   private apiUrl = environment.apiUrl;
+  baseUrl: any;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,9 @@ export class SupplierService {
     return this.http.post<Suppliers>(`${this.apiUrl}/api/v1/supplier/`, supplier);
   }
 
+  deleteSupplier(id: number) {
+  return this.http.delete(`http://localhost:8080/api/v1/supplier/${id}`, { responseType: 'text' });
+}
 
-  
 
 }
