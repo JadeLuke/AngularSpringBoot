@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupplierService } from '../../services/supplier.service';
@@ -31,7 +31,8 @@ export class SupplierComponent {
 
   submittedSupplier: Suppliers | null = null;
 
-  constructor(private supplierService: SupplierService) {}
+  constructor(private supplierService: SupplierService,   private cdr: ChangeDetectorRef
+) {}
 
   ngOnInit(): void {
     this.loadSuppliers();
@@ -104,7 +105,6 @@ export class SupplierComponent {
     this.supplierService.addSupplier(this.submittedSupplier).subscribe(() => {
      this.loadSuppliers();
   
-      // Reset form and preview
       this.newSupplier = { name: '', contact: '', store: [] };
       this.newItem = { item_name: '', price: 0, quantity: 0 };
       this.submittedSupplier = null;
@@ -116,9 +116,28 @@ export class SupplierComponent {
     });
   }
   
-  deleteSupplier(index: number) {
-  this.suppliers.splice(index, 1);
+
+
+
+
+
+
+deleteSupplier(supplierId: number, index: number) {
+  if (confirm('Are you sure you want to delete this supplier?')) {
+    this.supplierService.deleteSupplier(supplierId).subscribe({
+      next: () => {
+        console.log('Before delete:', this.suppliers);
+        this.suppliers = this.suppliers.filter(s => s.id !== supplierId);
+        console.log('After delete:', this.suppliers);
+        this.cdr.detectChanges();  
+      },
+      error: (err) => {
+        console.error('Error deleting supplier:', err);
+      }
+    });
+  }
 }
+
 
 
   
