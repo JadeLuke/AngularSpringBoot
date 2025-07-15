@@ -70,7 +70,7 @@ export class UpdateItemsComponent {
         this.storeService.updateItem(this.itemId, itemData).subscribe({
           next: (res) => {
             console.log('Item updated successfully', res);
-            alert('Item updated successfully');
+            alert('Entry updated successfully');
             this.router.navigate(['/']);
           },
           error: (err) => {
