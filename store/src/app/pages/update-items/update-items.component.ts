@@ -51,7 +51,10 @@ export class UpdateItemsComponent {
   }
 
   updateItem(): void {
-    if (this.itemForm.invalid) return;
+    if (this.itemForm.invalid || this.itemForm.pristine) {
+      alert('No changes detected.');
+      return;
+    }
   
     const supplierData = new FormData();
     supplierData.append('name', this.itemForm.get('name')?.value);
@@ -67,6 +70,7 @@ export class UpdateItemsComponent {
         this.storeService.updateItem(this.itemId, itemData).subscribe({
           next: (res) => {
             console.log('Item updated successfully', res);
+            alert('Item updated successfully');
             this.router.navigate(['/']);
           },
           error: (err) => {

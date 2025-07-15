@@ -1,7 +1,7 @@
 export interface Items {
     id?: number,
     item_name: string,
-    price: number,
-    quantity:number
+    price: number | null,
+    quantity:number | null
 }
 

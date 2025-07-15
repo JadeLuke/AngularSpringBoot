@@ -26,8 +26,8 @@ export class SupplierComponent {
 
   newItem: Items = {
     item_name: '',
-    price: 0,
-    quantity: 0
+    price: null,
+    quantity: null
   };
 
   submittedSupplier: Suppliers | null = null;
@@ -66,7 +66,7 @@ export class SupplierComponent {
   }
 
   addStoreItem() {
-    if (!this.newItem.item_name.trim() || this.newItem.price <= 0 || this.newItem.quantity <= 0) {
+    if (!this.newItem.item_name.trim() || this.newItem.price == null || this.newItem.quantity == null) {
       alert('Please enter valid item details.');
       return;
     }
