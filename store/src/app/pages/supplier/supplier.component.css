@@ -133,3 +133,11 @@ ul {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.edit{
+  /* border: solid red; */
+  margin-bottom: -1px;
+  margin-right: -3px;
+  
+  
+}

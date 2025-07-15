@@ -28,5 +28,9 @@ export class StoreService {
   updateItem(id: number, item:FormData): Observable<any>{
  return this.http.put(`${this.apiUrl}/api/v1/store/${id}`, item);
   }
+
+  deleteItem(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/api/v1/store/${id}`, { responseType: 'text' });
+  }
   
 }

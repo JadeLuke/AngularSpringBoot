@@ -20,15 +20,15 @@ export class SupplierService {
   }
 
   deleteSupplier(id: number) {
-  return this.http.delete(`http://localhost:8080/api/v1/supplier/${id}`, { responseType: 'text' });
+  return this.http.delete(`${this.apiUrl}/api/v1/supplier/${id}`, { responseType: 'text' });
 }
 
-getSupplierById(id: number): Observable<Suppliers>{
+  getSupplierById(id: number): Observable<Suppliers>{
   return this.http.get<Suppliers>(`${this.apiUrl}/api/v1/supplier/${id}`);
-}
+  }
 
-updateSupplier(id: number, data: FormData): Observable<any>{
+  updateSupplier(id: number, data: FormData): Observable<any>{
   return this.http.put(`${this.apiUrl}/api/v1/supplier/${id}`, data);
-}
+ }
 
 }
