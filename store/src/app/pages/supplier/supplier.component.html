@@ -20,8 +20,10 @@
     <input
       type="text"
       placeholder="Contact"
+       maxlength="10"
       [(ngModel)]="newSupplier.contact"
       (ngModelChange)="showSupplierPreview()"
+      (keypress)="allowOnlyNumbers($event)"
       required
     />
 
@@ -47,6 +49,7 @@
     <button (click)="addStoreItem()"> Add items</button>
   </div>
 
+  
   <div *ngIf="submittedSupplier">
     <h3>Newly Added Supplier</h3>
     <p><strong>Name:</strong> {{ submittedSupplier.name }}</p>

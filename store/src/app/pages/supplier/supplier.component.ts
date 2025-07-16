@@ -81,10 +81,23 @@ export class SupplierComponent {
       alert('Please fill in supplier name and contact.');
       return;
     }
+    
 
     this.showSupplierPreview(); 
   }
+allowOnlyNumbers(event: KeyboardEvent) {
+  const charCode = event.key.charCodeAt(0);
 
+  // Block non-numeric characters
+  if (charCode < 48 || charCode > 57) {
+    event.preventDefault();
+  }
+
+  // Block input if already 10 digits
+  if (this.newSupplier.contact.length >= 10) {
+    event.preventDefault();
+  }
+}
   submitSupplier() {
     if (!this.submittedSupplier) {
       alert('Please add supplier information first.');
